@@ -36,13 +36,19 @@ def bivariate_plot(df, max_features=5):
         # Plot all features if there are 5 or fewer
         selected_features = numerical_cols
 
+    # configure directory
+    params = read_yaml(PARAMS_FILE_PATH)
+    subdir_path = os.path.join(params.save_plots, "bivariate")
+    if not os.path.exists(subdir_path):
+        os.makedirs(subdir_path)
+
     # Plot selected features
     for i, col1 in enumerate(selected_features):
         for col2 in selected_features[i + 1:]:
             plt.figure(figsize=(6, 4))
             sns.scatterplot(x=df[col1], y=df[col2])
-            plt.title(f'Bivariate Plot: {col1} vs {col2}')
-            params = read_yaml(PARAMS_FILE_PATH)
-            plot_file = os.path.join(params.save_plots, f'bivariate_{col1}_vs_{col2}.png')
+            plt.title(f'Plot: {col1} vs {col2}')
+            
+            plot_file = os.path.join(subdir_path, f'{col1}_vs_{col2}.png')
             plt.savefig(plot_file)
             plt.close()

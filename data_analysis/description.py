@@ -17,6 +17,15 @@ def analyze_dataset(df):
                               "duplicate_rows" : duplicate_rows,
                               "duplicate_rows_percentage" : round(duplicate_rows_percentage,2)}}
     
+    # Configure directory
+    params = read_yaml(PARAMS_FILE_PATH)
+    subdir_path = os.path.join(params.save_plots, "distribution")
+    if not os.path.exists(subdir_path):
+        os.makedirs(subdir_path)
+
+    # numerical cols
+    numerical_columns = df.select_dtypes(include=['int64', 'float64']).columns
+
     # Distribution plot for individual features
     for column in df.columns:
 
@@ -31,13 +40,12 @@ def analyze_dataset(df):
                                 "distinct_values": distinct_values,
                                 "distinct_values_percentage": round(distinct_values_percentage,2)}
 
-        numerical_columns = df.select_dtypes(include=['int64', 'float64']).columns
         if column in numerical_columns:
             plt.figure(figsize=(6, 4))
             sns.histplot(df[column])
             plt.title(f"Distribution of {column}")
-            params = read_yaml(PARAMS_FILE_PATH)
-            output_file = os.path.join(params.save_plots, f"{column}-distribution.png")
+            
+            output_file = os.path.join(subdir_path, f"{column}-distribution.png")
             plt.savefig(output_file)
             plt.close()
     
