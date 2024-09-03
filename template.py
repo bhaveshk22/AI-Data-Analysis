@@ -7,14 +7,16 @@ logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
 project_name = 'aiAnalysis'
 
 list_of_files = [
-    "01_data_ingestion/__init__.py",
-    "01_data_ingestion/data_loader.py",
-    "02_data_preprocessing/__init__.py",
-    "02_data_preprocessing/preprocessor.py",
-    "03_data_analysis/__init__.py",
-    "03_data_analysis/model_pipeline.py",
-    "04_report_generation/__init__.py",
-    "04_report_generation/report_generator.py",
+    "data_ingestion/__init__.py",
+    "data_ingestion/data_loader.py",
+    "data_preprocessing/__init__.py",
+    "data_preprocessing/preprocessor.py",
+    "data_analysis/__init__.py",
+    "data_analysis/analysis_engine.py",
+    "data_analysis/analysis_plots/storage_for_plots.txt",
+    "report_generation/__init__.py",
+    "report_generation/report_generator.py",
+    "utils/__init__.py",
     "main.py",
     "params.yaml",
     "setup.py",
@@ -27,7 +29,6 @@ list_of_files = [
 for filepath in list_of_files:
     filepath = Path(filepath)
     filedir, filename = os.path.split(filepath)
-
     if filedir:
         os.makedirs(filedir, exist_ok=True)
         logging.info(f'Creating directory: {filedir} for the file {filename}')

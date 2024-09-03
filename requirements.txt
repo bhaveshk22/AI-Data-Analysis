@@ -4,3 +4,10 @@ scikit-learn
 seaborn
 matplotlib
 openpyxl
+pyyaml
+python-box
+ensure
+notebook
+spacy
+nltk
+#en_core_web_sm
