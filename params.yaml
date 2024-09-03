@@ -1,1 +1,2 @@
-data_path: "artifacts/olympics2024.xlsx"
+data_path: "artifacts/olympics2024.csv"
+save_plots: "data_analysis/analysis_plots"
