@@ -4,6 +4,9 @@ import seaborn as sns
 import os
 
 def analyze_dataset(df):
+    # shape of the dataset
+    shape = df.shape
+
     # Check for missing values
     missing_values = df.isnull().sum().sum()
     missing_values_percentage = (missing_values / len(df)) * 100
@@ -12,7 +15,8 @@ def analyze_dataset(df):
     duplicate_rows = df.duplicated().sum().sum()
     duplicate_rows_percentage = (duplicate_rows / len(df)) * 100
     
-    statistics = {"overall": {"missing_values" : missing_values,
+    statistics = {"overall": {"shape" : shape,
+                              "missing_values" : missing_values,
                               "missing_values_percentage" : round(missing_values_percentage,2),
                               "duplicate_rows" : duplicate_rows,
                               "duplicate_rows_percentage" : round(duplicate_rows_percentage,2)}}
@@ -45,12 +49,12 @@ def analyze_dataset(df):
             sns.histplot(df[column])
             plt.title(f"Distribution of {column}")
             
-            output_file = os.path.join(subdir_path, f"{column}-distribution.png")
+            output_file = os.path.join(subdir_path, f"{column}.png")
             plt.savefig(output_file)
             plt.close()
     
     # basic description of the dataset
-    description = df.describe()
+    description = df.describe().to_dict()
     
     return statistics, description
 

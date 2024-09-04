@@ -20,7 +20,6 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
             # Categorical column
             if df[col].dtype in [np.object_, np.str_]:
                 mode_val = df[col].mode().iloc[0]
-                print(f"Filling null values in column {col} with mode value {mode_val}.")
                 df[col] = df[col].fillna(mode_val)
             
             # Numerical column    

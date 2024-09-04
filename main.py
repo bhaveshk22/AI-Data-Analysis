@@ -9,6 +9,7 @@ from data_analysis import (analyze_dataset,
                            regression_trend,
                            feature_importance,
                            pca_feature_importance)
+from data_report_generator import generate_report
 
 
 #Loading the dataset
@@ -30,6 +31,7 @@ trends = regression_trend(data)
 pca_summary = pca_feature_importance(data)
 
 summary = {
+    'Statistics' : statistics,
     'Description': description,
     'Trends': trends,
     'Correlations': correlations,
@@ -42,3 +44,14 @@ if target.lower() != "none":
     summary['Feature Importance'] = feature_imp
 
 logger.info("Data Analyzed and Preprocessed Successfully")
+
+# print(summary)
+
+# generating report
+logger.info("Generating Report...")
+
+html = generate_report(summary,data)
+with open("report.html", 'w') as f:
+    f.write(html)
+
+logger.info('Reported Generated Successfully')
