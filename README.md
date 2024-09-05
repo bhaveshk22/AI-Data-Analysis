@@ -11,22 +11,42 @@ DataInsight Engine is a comprehensive tool designed to streamline the data analy
 - Handle natural language queries about the dataset, providing specific answers.
 
 ## **Project Structure**
-- **01_data_ingestion/**: Handles loading datasets from various file formats.
-- **02_data_preprocessing/**: Preprocesses the data (e.g., missing value imputation, normalization).
-- **03_data_analysis/**: Performs data analysis using algorithms like regression, random forest, and PCA.
-- **04_report_generation/**: Generates a report based on the analysis.
+- **data_ingestion/**: Handles loading datasets from various file formats.
+- **data_preprocessing/**: Preprocesses the data (e.g., missing value imputation, normalization).
+- **data_analysis/**: Performs data analysis using algorithms like regression, random forest, and PCA.
+- **data_report_generator/**: Generates a report based on the analysis.
+- **user_interaction/**: Handles the user queries and generates response in command line interface.
+- **logger/**: Custom logger module
+- **research/**: Notebook for various experiments.
+- **utils/**: Common utility tools for various purposes.
 - **main.py**: The entry point to run the engine, guiding users through each step interactively.
 - **params.yaml**: Configuration file for parameters like file paths, preprocessing options, etc.
 
 ## **Installation**
-To get started with the DataInsight Engine, clone this repository:
+1. To get started with the DataInsight Engine, move to the source code:
+
 
 ```bash
-git clone <repository_url>
-cd DataInsight-Engine
+cd Source_Code
 ```
 
-Install the required dependencies:
+2. Set the path of the dataset in params.yaml
+
+3. Create a virtual environment
+
+```bash
+python -m venv env
+
+env\Scripts\activate
+```
+
+4. Run the template to see if there is any missing folder
+
+```bash
+python template.py
+```
+
+5. Install the required dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -48,14 +68,9 @@ The engine will guide you through the following steps:
 
 ## **Query Handling**
 DataInsight Engine allows you to ask questions like:
-- "What is the number of outliers detected?"
-- "What are the key trends in the dataset?"
-- "Which features contribute the most to variance?"
+- "What is the number of outliers in 'column name'?"
+- "Give me the summary of the data?"
+- "What is the percentage of the missing values in 'column name'?"
 
 The engine uses a basic NLP model to interpret and respond to these questions.
 
-## **Contributing**
-If you'd like to contribute to the project, feel free to open issues or submit pull requests.
-
-## **License**
-This project is licensed under the MIT License.

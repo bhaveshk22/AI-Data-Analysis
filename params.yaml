@@ -1,4 +1,6 @@
-data_path: "artifacts/Pokemon.csv"
+# path to dataset
+data_path: "olympics2024.csv"
+
 save_plots: "artifacts/analysis_plots"
 trends: "artifacts/analysis_plots/trends"
 bivariate: "artifacts/analysis_plots/bivariate"

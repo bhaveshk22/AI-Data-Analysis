@@ -1,5 +1,4 @@
-from pathlib import Path
-from utils import read_yaml
+from utils import *
 from logger import logger
 from data_ingestion import load_data
 from data_preprocessing import preprocess_data
@@ -15,13 +14,13 @@ from user_interaction import process_query
 
 #Loading the dataset
 logger.info('Data Loading Started')
-params = read_yaml(Path("params.yaml"))
+params = read_yaml(PARAMS_FILE_PATH)
 data = load_data(params.data_path)
 logger.info("Data Loaded Successfully")
 
 
 #Analysing and Preprocessing dataset
-logger.info("Data Analysis and Prerprocessing Started")
+logger.info("Data Analysis and Preprocessing Started")
 statistics, description = analyze_dataset(data)
 
 data = preprocess_data(data)
