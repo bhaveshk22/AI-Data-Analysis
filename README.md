@@ -38,15 +38,12 @@ cd Source_Code
 python -m venv env
 
 env\Scripts\activate
+
+# if using git bash
+source env/Scripts/activate
 ```
 
-4. Run the template to see if there is any missing folder
-
-```bash
-python template.py
-```
-
-5. Install the required dependencies:
+4. Install the required dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -56,6 +53,7 @@ pip install -r requirements.txt
 Run the engine with the following command:
 
 ```bash
+python template.py
 python main.py
 ```
 
