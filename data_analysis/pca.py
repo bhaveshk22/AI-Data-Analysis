@@ -52,6 +52,6 @@ def pca_feature_importance(data: pd.DataFrame, n_components=0.95):
     plt.savefig(plot_file)
     plt.close()
 
-    return loadings
+    return loadings.to_dict()
 
 

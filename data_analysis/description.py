@@ -39,12 +39,22 @@ def analyze_dataset(df):
         distinct_values = df[column].nunique()
         distinct_values_percentage = (distinct_values / len(df[column])) * 100
 
-        statistics[column] = {"missing_values": missing_values,
-                                "missing_values_percentage" : round(missing_values_percentage,2),
-                                "distinct_values": distinct_values,
-                                "distinct_values_percentage": round(distinct_values_percentage,2)}
 
         if column in numerical_columns:
+            # detecting outliers
+            Q1 = df[column].quantile(0.25)
+            Q3 = df[column].quantile(0.75)
+            IQR = Q3 - Q1
+
+            lower_bound = Q1 - 1.5 * IQR
+            upper_bound = Q3 + 1.5 * IQR
+
+            outliers = df[(df[column] < lower_bound) | (df[column] > upper_bound)]
+            
+            outlier_count = outliers.shape[0]
+            outlier_percentage = (outlier_count / df.shape[0]) * 100
+
+            #plotting the distribution plot
             plt.figure(figsize=(6, 4))
             sns.histplot(df[column])
             plt.title(f"Distribution of {column}")
@@ -52,7 +62,15 @@ def analyze_dataset(df):
             output_file = os.path.join(subdir_path, f"{column}.png")
             plt.savefig(output_file)
             plt.close()
-    
+
+
+        # storing results
+        statistics[column] = {"missing_values": missing_values,
+                              "missing_values_percentage" : round(missing_values_percentage,2),
+                              "distinct_values": distinct_values,
+                              "distinct_values_percentage": round(distinct_values_percentage,2),
+                              "outliers": outlier_count,
+                              "outliers_percentage": round(outlier_percentage,2)}
     # basic description of the dataset
     description = df.describe().to_dict()
     

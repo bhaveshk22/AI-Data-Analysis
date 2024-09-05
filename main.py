@@ -10,6 +10,7 @@ from data_analysis import (analyze_dataset,
                            feature_importance,
                            pca_feature_importance)
 from data_report_generator import generate_report
+from user_interaction import process_query
 
 
 #Loading the dataset
@@ -38,6 +39,11 @@ summary = {
     'PCA Summary': pca_summary
 }
 
+import json
+
+# with open('data.json', 'w') as json_file:
+#     json.dump(summary, json_file, indent=4)
+
 target = input("Enter the target variable for feature importance (type 'None' if there is no target): ")
 if target.lower() != "none":
     feature_imp = feature_importance(data, target)
@@ -55,3 +61,23 @@ with open("report.html", 'w') as f:
     f.write(html)
 
 logger.info('Reported Generated Successfully')
+
+
+#handling queries related to data analysis
+while True:
+    query = input('\nAsk about data analysis (type exit to stop): ').strip()
+    
+    # Check if the user wants to exit
+    if query.lower() == 'exit':
+        print("Exiting the program. Thank you!")
+        break
+    
+    # Check if the input is empty
+    elif not query:
+        print("You didn't enter any query. Please try again.")
+        continue
+    
+    # Process the query and get the response
+    else:
+        response = process_query(query, data, summary)
+        print(f"Response: {response}")

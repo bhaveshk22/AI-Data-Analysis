@@ -75,7 +75,7 @@ def feature_importance(df, target_column, top_n=10):
     plt.savefig(plot_file)
     plt.close()
 
-    return feature_importance_df
+    return feature_importance_df.to_dict()
 
 
 

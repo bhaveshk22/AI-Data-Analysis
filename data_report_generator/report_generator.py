@@ -86,6 +86,14 @@ def generate_report(summary,data):
             desc = summary['Description'][cols]
             html += f"""
             <tr>
+                <th>Outliers (%)</th>
+                <td>: {column['outliers']}</td>
+            </tr>
+            <tr>
+                <th>Outliers (%)</th>
+                <td>: {column['outliers_percentage']}</td>
+            </tr>
+            <tr>
                 <th>Count</th>
                 <td>: {desc['count']}</td>
             </tr>

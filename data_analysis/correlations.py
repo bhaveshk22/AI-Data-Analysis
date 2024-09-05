@@ -16,4 +16,4 @@ def summarize_correlations(df):
     plt.savefig(correlation_plot_file)
     plt.close()
     
-    return correlation_matrix
+    return correlation_matrix.to_dict()
