@@ -3,6 +3,9 @@
 
 DataInsight Engine is a comprehensive tool designed to streamline the data analysis process. It automates key steps such as loading datasets, preprocessing data, analyzing it using various statistical and machine learning techniques, generating insightful reports, and answering user queries about the data. This engine is perfect for quick, automated insights into any dataset.
 
+## **Video Demostration**
+- [watch the demo](https://github.com/bhaveshk22/AI-Data-Analysis/blob/main/video_demostration/video%20demostration.mp4)
+
 ## **Features**
 - Load datasets from CSV, JSON, or Excel formats.
 - Perform data preprocessing to handle missing values, scaling, and more.
